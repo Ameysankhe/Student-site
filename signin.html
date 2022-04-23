@@ -6,6 +6,9 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sign In</title>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&family=Spartan&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600&display=swap"
+  rel="stylesheet">
   <link href="ico/user_1.ico"/>
   <link rel="stylesheet" href="signin.css">
 </head>
@@ -14,20 +17,14 @@
     <div class="form-box">
       <div class="button-box">
         <div id="btn"></div>
-        <button type="button" class="toggle-btn" onclick="login()">Log In</button>
-        <button type="button" class="toggle-btn" onclick="register()">Register</button>
-      </div>
-      <div class="social-icons">
-        <button class="lbtn" id="glogin"><img src="png/google.png"></button>
-        &nbsp;&nbsp;&nbsp;&nbsp;<button class="lbtn"><img src="png/fb.png"></button>
-        &nbsp;&nbsp;&nbsp;&nbsp;<button class="lbtn"><img src="png/github.png"></button>
-        &nbsp;&nbsp;&nbsp;&nbsp;<button class="lbtn" id="alogin"><img src="png/bg1.png"></button>
+        <button type="button" id="clrbtn" class="toggle-btn" onclick="login()"><b>Log In</b></button>
+        <button type="button" id="dlrbtn" class="toggle-btn" onclick="register()"><b>Register</b></button>
       </div>
       <div id="login" class="input-group">
         <input type="email" id="uname" class="input-field" placeholder="Email Id" required>
         <input type="password" id="pword" class="input-field" placeholder="Password" required>
-        <input type="checkbox" class="check-box"><span>Remember Me</span>
         <button onclick="signIn()" id="logging" class="submit-btn">Login</button>
+        <h5 class="signup-link">Not a member? <a href="" onclick="signin()">Sign up Now</a></h3>
       </div>
       <div id="register" class="input-group">
         <input type="text" id="username" class="input-field" placeholder="User Id" required>
@@ -43,16 +40,27 @@
     var x = document.getElementById("login");
     var y = document.getElementById("register");
     var z = document.getElementById("btn");
+    var a = document.getElementById("clrbtn");
+    var s = document.getElementById("dlrbtn");
 
     function register(){
       x.style.left="-400px";
       y.style.left="50px";
       z.style.left="110px";
+      a.style.color="#000";
+      s.style.color="#fff"
     }
     function login(){
       x.style.left="50px";
       y.style.left="450px";
       z.style.left="0px";
+      a.style.color="#fff";
+      s.style.color="#000";
+    }
+    function signin(){
+      x.style.left="-400px";
+      y.style.left="50px";
+      z.style.left="110px";
     }
   </script>
 
