@@ -5,7 +5,7 @@ $('#List').find('tbody').html('');
 
   var i = 0;
 
-  storageRef.child('Semester1/').listAll().then(function(result){
+  storageRef.child('Semester6/').listAll().then(function(result){
       result.items.forEach(function(imageRef){
         //console.log("Image reference" + imageRef.toString());
 

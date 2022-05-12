@@ -25,6 +25,7 @@ $('#List').find('tbody').html('');
         new_html += row;
         new_html += '</td>';
         new_html += '<td>';
+        new_html += '<h4>'+images.name+'</h4>';
         new_html += '<a href="'+url+'" width="100px">Download file';
         new_html += '</td>';
         new_html += '</tr>';

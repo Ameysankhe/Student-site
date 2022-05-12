@@ -3,7 +3,7 @@ window.onload=function(){
         for(let i = 0; i<e.target.files.length; i++){
             let imagefile = e.target.files[i];
     
-            let storageRef = firebase.storage().ref("Semester1/"+imagefile.name);
+            let storageRef = firebase.storage().ref("Semester6/"+imagefile.name);
             
             let task = storageRef.put(imagefile);
     
