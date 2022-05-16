@@ -237,6 +237,10 @@ h3 {
 
 
 /* components */
+.header{
+  margin-top: -75px;
+  z-index: 0;
+}
 .semesters {
     display: grid;
     gap: 1.5rem;
@@ -304,4 +308,53 @@ h1{
   opacity: 0;
   transform: translateY(3);
   animation: fadeUp 3s ease forwards;
+}
+
+.slide-pop-up{
+  display: flex;
+  height: 40px;
+  margin-left:auto;
+  z-index: 2;
+}
+
+.side-panel-toggle{
+  height: 40px;
+  width: 40px;
+  display: grid;
+  place-items: center;
+  color: #ffffff;
+  background: hsl(var(--clr-primary-400));
+  border: none;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+  cursor: pointer;
+}
+
+.side-panel-toggle:hover{
+  background-color: orangered;
+}
+
+.sp-icon-close{
+  display: none !important;
+}
+
+.side-panel{
+  display: none;
+  width: max-content;
+  padding: 7px;
+  color: #ffffff;
+  background: hsl(var(--clr-primary-400));
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.35);
+}
+
+.side-panel-open .side-panel{
+  display: initial;
+}
+
+.side-panel-open .sp-icon-open{
+  display: none !important;
+}
+
+.side-panel-open .sp-icon-close{
+  display: initial !important;
 }
