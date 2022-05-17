@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&family=Spartan&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600&display=swap"
       rel="stylesheet">
@@ -26,6 +27,17 @@
             </nav>
         </div>
     </header>
+
+<!-- Slide POP-UP -->
+    <div class="slide-pop-up side-panel-open">
+      <button class="side-panel-toggle" type="button">
+        <span class="material-icons sp-icon-open">keyboard_double_arrow_left</span>
+        <span class="material-icons sp-icon-close">keyboard_double_arrow_right</span>
+      </button>
+      <div class="side-panel">
+        Register to be a part of this amazing community!
+      </div>
+    </div>
     
 
     <!-- Inventory Grid -->
@@ -85,6 +97,12 @@
   <footer>
     <h4>&copy; 2022 FindNotes | All rights reserved ltd.</h4>
   </footer>
+
+  <script>
+    document.querySelector(".side-panel-toggle").addEventListener("click",()=>{
+      document.querySelector(".slide-pop-up").classList.toggle("side-panel-open");
+    })
+  </script>
 
 </body>
 </html>
