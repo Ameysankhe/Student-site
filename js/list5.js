@@ -10,18 +10,18 @@ $('#List').find('tbody').html('');
         //console.log("Image reference" + imageRef.toString());
 
         i++;
-        displayImage(i, imageRef);
+        displayImage(imageRef);
       });
   });
 
-  function displayImage(row, images){
+  function displayImage( images){
 
     images.getDownloadURL().then(function(url){
         //console.log(images.name);
         let new_html = '';
         new_html += '<tr>';
         new_html += '<td>';
-        new_html += row;
+        new_html += '<li></li>'
         new_html += '</td>';
         new_html += '<td>';
         new_html += '<h4>'

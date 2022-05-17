@@ -68,9 +68,12 @@ th{
 table,th,td{
     border: 2px solid black;
     border-collapse: collapse;
-    border-color: hsl(var(--clr-neutral-200));
+    border-color: hsl(var(--clr-secondary-100));
 }
 
 th,td{
     padding: 10px;
+}
+table li{
+    list-style: url(../images/icons8-google-books-32.png);
 }

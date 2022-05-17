@@ -15,7 +15,6 @@ window.onload=function(){
                     case firebase.storage.TaskState.PAUSED :
                         console.log("Upload is Paused");
                         break;
-                    
                 }
             })
         }

@@ -10,11 +10,11 @@ $('#List').find('tbody').html('');
         //console.log("Image reference" + imageRef.toString());
 
         i++;
-        displayImage(i, imageRef);
+        displayImage( imageRef);
       });
   });
 
-  function displayImage(row, images){
+  function displayImage( images){
 
     images.getDownloadURL().then(function(url){
         console.log(url);
@@ -22,7 +22,7 @@ $('#List').find('tbody').html('');
         let new_html = '';
         new_html += '<tr>';
         new_html += '<td>';
-        new_html += row;
+        new_html += '<li></li>'
         new_html += '</td>';
         new_html += '<td>';
         new_html += '<h4>'
@@ -30,7 +30,7 @@ $('#List').find('tbody').html('');
         new_html += '</h4>';
         new_html += '</td>';
         new_html += '<td>';
-        new_html += '<a href='+url+'>Download file';
+        new_html += '<a href='+url+' style="color: black">Download file';
         new_html += '</td>';
         new_html += '</tr>';
         $('#List').find('tbody').append(new_html);

@@ -73,4 +73,6 @@ table,th,td{
 th,td{
     padding: 10px;
 }
-
+table li{
+    list-style: url(../images/icons8-google-books-32.png);
+}
