@@ -160,6 +160,11 @@ nav a:hover::before{
     border-radius: 5px;
     color: white;
   }
+
+  #sign{
+    margin-top: 10px;
+  }
+
   .check-box{
     margin: 30px 10px 30px 0;
   }

@@ -14,8 +14,6 @@
 <body>
   <header>
     <div class="navbar">
-        <img src="" width="200px" class="logo">
-
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
@@ -31,18 +29,20 @@
         <div id="btn"></div>
         <button type="button" id="clrbtn" class="toggle-btn" onclick="login()"><b>Log In</b></button>
         <button type="button" id="dlrbtn" class="toggle-btn" onclick="register()"><b>Register</b></button>
+
       </div>
       <div id="login" class="input-group">
+
         <input type="email" id="uname" class="input-field" placeholder="Email Id" required>
         <input type="password" id="pword" class="input-field" placeholder="Password" required>
-        <button onclick="signIn()" id="logging" class="submit-btn">Login</button>
+        <button id="logging" class="submit-btn">Login</button>
         <h5 class="signup-link">Not a member? Click on Register</h5>
       </div>
       <div id="register" class="input-group">
+        <input type="text" id="username" class="input-field" placeholder="User Id" required>
         <input type="email" id="email" class="input-field" placeholder="Email Id" required>
         <input type="password" id="password" class="input-field" placeholder="Password" required>
-        <input type="checkbox" class="check-box"><span>I agree to the terms & conditions</span>
-        <button onclick="signUp()" id="sign"  class="submit-btn">Register</button>
+        <button onclick="login()" id="sign"  class="submit-btn">Register</button>
       </div>
     </div> 
   </div>
@@ -68,7 +68,7 @@
       a.style.color="#fff";
       s.style.color="#000";
     }
-    function signin(){
+    function signIn(){
       x.style.left="-400px";
       y.style.left="50px";
       z.style.left="110px";
@@ -80,7 +80,7 @@
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.11/firebase-app.js";
     import { getDatabase ,set , ref, update} from "https://www.gstatic.com/firebasejs/9.6.11/firebase-database.js";
     import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.11/firebase-analytics.js";
-    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, signInAnonymously, onAuthStateChanged   } from "https://www.gstatic.com/firebasejs/9.6.11/firebase-auth.js";
+    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, onAuthStateChanged   } from "https://www.gstatic.com/firebasejs/9.6.11/firebase-auth.js";
 
     // TODO: Add SDKs for Firebase products that you want to use
     // https://firebase.google.com/docs/web/setup#available-libraries
@@ -158,7 +158,6 @@
       });
 
     });
-
   </script>
 </body>
 </html>

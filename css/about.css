@@ -91,6 +91,16 @@ nav a:hover::before{
     width: 100%;
 }
 
+#logo{
+    display: inline-block;
+    margin: 20px;
+    padding: 8px;
+    font-weight: 600;
+    border: 2px solid hsl(var(--clr-primary-400));
+    color: hsl(var(--clr-primary-400));
+  }
+  
+
 .about-section{
   background: url(../images/orange.jpg) no-repeat left;
   background-size: 55%;
