@@ -1,55 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&family=Spartan&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600&display=swap"
-      rel="stylesheet">
-    <link rel="stylesheet" href="css/index.css">
-    <title>Home</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&family=Spartan&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/index.css">
+  <title>Home</title>
 </head>
+
 <body>
-    <header>
-        <div class="navbar">
-          <span id="logo">FIND NOTES</span>
-            <nav>
-                <ul>
-                    <li><a href="">Home</a></li>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="signin.html">Sign In</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
-<!-- Slide POP-UP -->
-    <div class="slide-pop-up side-panel-open">
-      <button class="side-panel-toggle" type="button">
-        <span class="material-icons sp-icon-open">keyboard_double_arrow_left</span>
-        <span class="material-icons sp-icon-close">keyboard_double_arrow_right</span>
-      </button>
-      <div class="side-panel">
-        <a href="signin.html">Register to be a part of this amazing community!</a>
-      </div>
+  <!-- <header>
+    <div class="navbar">
+      <span id="logo">FIND NOTES</span>
+      <nav>
+        <ul>
+          <li><a href="">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="signin.html">Community</a></li>
+        </ul>
+      </nav>
     </div>
-    
+  </header> -->
 
-    <!-- Inventory Grid -->
-    <div class="header">
-        <center><h1>Welcome to the ultimate Inventory!</h1></center>
+  <!-- Slide POP-UP
+  <div class="slide-pop-up side-panel-open">
+    <button class="side-panel-toggle" type="button">
+      <span class="material-icons sp-icon-open">keyboard_double_arrow_left</span>
+      <span class="material-icons sp-icon-close">keyboard_double_arrow_right</span>
+    </button>
+    <div class="side-panel">
+      <a href="signin.html">Register to be a part of this amazing community!</a>
     </div>
-     <main class="semesters">
+  </div> -->
+
+
+  <!-- Inventory Grid -->
+  <div class="welcome-text">
+      <h1>Welcome to the ultimate Inventory!</h1>
+  </div>
+  <main class="semesters">
     <article class="semester one flow bg-primary-400 quote text-neutral-100">
       <p>
         Semester One
       </p>
       <p>
-        <a href="upload.html" >Browse ></a>
+        <a href="upload.html">Browse ></a>
       </p>
     </article>
     <article class="semester flow bg-secondary-400 text-neutral-100">
@@ -57,22 +59,22 @@
         Semester Two
       </p>
       <p>
-        <a href="upload1.html" >Browse ></a>
+        <a href="upload1.html">Browse ></a>
       </p>
     </article>
     <article class="semester flow bg-neutral-100 text-primary-400">
       <p>
         Semester Three
       <p>
-        <a href="upload2.html" >Browse ></a>
+        <a href="upload2.html">Browse ></a>
       </p>
     </article>
     <article class="semester one flow bg-secondary-500 text-neutral-100">
       <p>
-       Semester Four
+        Semester Four
       </p>
       <p>
-        <a href="upload3.html" >Browse ></a>
+        <a href="upload3.html">Browse ></a>
       </p>
     </article>
     <article class="semester bg-neutral-100 text-primary-400">
@@ -80,7 +82,7 @@
         Semester Five
       </p>
       <p>
-        <a href="upload4.html" >Browse ></a>
+        <a href="upload4.html">Browse ></a>
       </p>
     </article>
     <article class="semester one flow bg-primary-400 quote text-neutral-100">
@@ -88,20 +90,21 @@
         Semester Six
       </p>
       <p>
-        <a href="upload5.html" >Browse ></a>
+        <a href="upload5.html">Browse ></a>
       </p>
     </article>
   </main>
-  
-  <footer>
+
+  <!-- <footer>
     <h4>&copy; 2022 FindNotes | All rights reserved ltd.</h4>
-  </footer>
+  </footer> -->
 
   <script>
-    document.querySelector(".side-panel-toggle").addEventListener("click",()=>{
+    document.querySelector(".side-panel-toggle").addEventListener("click", () => {
       document.querySelector(".slide-pop-up").classList.toggle("side-panel-open");
     })
   </script>
 
 </body>
+
 </html>

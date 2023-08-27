@@ -1,3 +1,4 @@
+/* defining properties */
 :root {
   --clr-primary-400: 17 80% 55% ;
   --clr-secondary-400: 0 0% 70%;
@@ -16,7 +17,9 @@
   --fs-500: 1.25rem;
   --typewriterSpeed:6s;
 }
+/* end */
 
+/* styling body */
 body{
   margin: 0;
   font-family: "Barlow Semi Condensed", sans-serif;
@@ -31,14 +34,16 @@ body{
 
   background-color: hsl(var(--clr-neutral-200));
 }
+/* end */
 
+/* styling navbar */
 .navbar{
   width: 80%;
   margin: 0 auto;
 }
 
 header{
-height: 80px;
+  height: 80px;
   background-color: white;
 }
 
@@ -99,50 +104,9 @@ nav a:hover::before{
   border: 2px solid hsl(var(--clr-primary-400));
   color: hsl(var(--clr-primary-400));
 }
+/* end */
 
-#upload{
-  align-items: center;
-  background-color: #fff;
-  border: 1px solid #dbdbdb;
-  border-radius: .375em;
-  box-shadow: none;
-  color: #363636;
-  cursor: pointer;
-  display: flex;
-  font-family: "Barlow Semi Condensed", sans-serif;
-  font-size: 1rem;
-  justify-content: center;
-  line-height: 1.5;
-  padding: 7px;
-  
-}
-
-#submit {
-align-items: center;
-background-color: #fff;
-border: 1px solid #dbdbdb;
-border-radius: .375em;
-box-shadow: none;
-color: #363636;
-cursor: pointer;
-display: flex;
-font-family: "Barlow Semi Condensed", sans-serif;
-font-size: 1rem;
-justify-content: center;
-line-height: 1.5;
-padding: 7px;
-margin-top: 20px;
-}
-
-#submit:active {
-border-color: #4a4a4a;
-outline: 0;
-}
-
-#submit:hover {
-border-color: #b5b5b5;
-}
-
+/* styling footer */
 footer{
   background-color:white;
   margin-top: 10px;
@@ -155,6 +119,7 @@ footer{
 footer h4{
   margin-top: 10px;
 }
+/* end */
 
 /* Box sizing rules */
 *,
@@ -188,13 +153,10 @@ html:focus-within {
   scroll-behavior: smooth;
 }
 
-
-
 /* A elements that don't have a class get default styles */
 a:not([class]) {
   text-decoration-skip-ink: auto;
 }
-
 
 /* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
 @media (prefers-reduced-motion: reduce) {
@@ -245,22 +207,19 @@ h3 {
 }
 
 
-/* components */
-.header{
-  margin-top: -75px;
-  z-index: 0;
-}
 .semesters {
-    display: grid;
-    gap: 1.5rem;
-    grid-template-columns: repeat(3,1fr );
-  padding-block: 2rem;
+  display: grid;
+  grid-template-columns: repeat(3,1fr );
+  gap: 1.5rem;
   width: min(95%, 70rem);
+  /*grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); /*auto-wrap things like flex*/
+  padding-block: 2rem;
   margin-inline: auto;
   opacity: 0;
   transform: translateY(3);
   animation: fadeUp 3s ease forwards;
 }
+/*300px*/
 
 @keyframes fadeUp {
     to{
@@ -270,6 +229,7 @@ h3 {
     
 }
 
+/* styling each box */
 .semester {
   font-size: var(--fs-400);
   padding: 2rem;
@@ -307,11 +267,18 @@ h3 {
   opacity: 0.7;
 }
 
+/* components */
+.header{
+  margin-top: -75px;
+  z-index: 0;
+}
+
 /* typing effect */
-h1{
+.welcome-text h1{
   font-family: 'Source Code Pro', monospace;
-    position: relative;
+  position: relative;
   margin-top: 50px;
+  margin-left: 26%;
   width: max-content;
   color: hsl(var(--clr-secondary-400));
   opacity: 0;
@@ -372,4 +339,49 @@ h1{
 
 .side-panel-open .sp-icon-close{
   display: initial !important;
+}
+
+/*media query to resize semesters according to mobile*/
+@media (max-width: 500px){
+  *{
+    overflow-x: hidden;
+  }
+
+  .navbar{
+    display: block;
+    margin: 0;
+    padding: 0;
+  }
+
+  .welcome-text h1{  
+    text-align: center;
+    max-width: 50%;
+    margin-left: 95px;
+    margin-top: 10px;
+  }
+
+  .semester{
+    height: 20vh;
+    /* height: 118%;
+    width: 55%; */
+    width: 90vw;
+    margin-left: 10px;
+  }
+
+  .semesters{
+    display: grid;
+    grid-template-columns: repeat(1,1fr);
+    gap: 3rem;
+    width: min(95%, 70rem);
+    opacity: 0;
+    transform: translateY(3);
+    animation: fadeUp 3s ease forwards;
+  }
+
+  footer h4 {
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+  
 }
