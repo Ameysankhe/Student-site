@@ -37,8 +37,13 @@ body{
     font-size: 20px;
 }
 
+#uploadProgress{
+    margin-top: 1rem;
+}
+
 #List{
-    margin: 20px auto;
+    /*margin: 20px auto;*/
+    margin: 8px auto;
     text-decoration: none;
     color: black;
 } 
@@ -51,7 +56,9 @@ body{
 
 
 caption{
-    margin: 30px 0;
+    /*margin: 30px 0;*/
+    margin-top: 5px;
+    margin-bottom: 14px;
     font-weight: bolder;
 }
 
@@ -79,3 +86,4 @@ table li{
     list-style: url(../images/icons8-google-books-32.png);
 
 }
+

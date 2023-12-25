@@ -277,7 +277,7 @@ h3 {
 .welcome-text h1{
   font-family: 'Source Code Pro', monospace;
   position: relative;
-  margin-top: 50px;
+  /*margin-top: 50px;*/
   margin-left: 26%;
   width: max-content;
   color: hsl(var(--clr-secondary-400));

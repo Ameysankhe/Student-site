@@ -16,20 +16,22 @@
 </head>
 
 <body>
-  <!-- <header>
+  <header>
     <div class="navbar">
       <span id="logo">FIND NOTES</span>
       <nav>
         <ul>
           <li><a href="">Home</a></li>
           <li><a href="about.html">About Us</a></li>
-          <li><a href="signin.html">Community</a></li>
+          <!--<li><a href="signup-signin.html">SignUp/SignIn</a></li>-->
+          <li id="loginLogoutLink"><a href="signup-signin.html">SignUp/SignIn</a></li>
+          <!-- This will be dynamically updated -->
         </ul>
       </nav>
     </div>
-  </header> -->
+  </header>
 
-  <!-- Slide POP-UP
+  <!-- Slide POP-UP 
   <div class="slide-pop-up side-panel-open">
     <button class="side-panel-toggle" type="button">
       <span class="material-icons sp-icon-open">keyboard_double_arrow_left</span>
@@ -38,12 +40,12 @@
     <div class="side-panel">
       <a href="signin.html">Register to be a part of this amazing community!</a>
     </div>
-  </div> -->
+  </div>
 
 
   <!-- Inventory Grid -->
   <div class="welcome-text">
-      <h1>Welcome to the ultimate Inventory!</h1>
+    <h1>Welcome to the ultimate Inventory!</h1>
   </div>
   <main class="semesters">
     <article class="semester one flow bg-primary-400 quote text-neutral-100">
@@ -95,15 +97,66 @@
     </article>
   </main>
 
-  <!-- <footer>
+  <footer>
     <h4>&copy; 2022 FindNotes | All rights reserved ltd.</h4>
-  </footer> -->
+  </footer>
 
-  <script>
+  <!--<script>
     document.querySelector(".side-panel-toggle").addEventListener("click", () => {
       document.querySelector(".slide-pop-up").classList.toggle("side-panel-open");
     })
+  </script>-->
+
+  <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-auth.js"></script>
+
+  <script>
+    // Your Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyDR0ZrU5EoNIBlnXsliOrjbE-0z_XckCgM",
+      authDomain: "app-demo-f9bbe.firebaseapp.com",
+      databaseURL: "https://app-demo-f9bbe-default-rtdb.firebaseio.com",
+      projectId: "app-demo-f9bbe",
+      storageBucket: "app-demo-f9bbe.appspot.com",
+      messagingSenderId: "825109736153",
+      appId: "1:825109736153:web:67a12c78d27248b7632cc8",
+      measurementId: "G-LDJ3TXH3DL"
+    };
+
+    // Initialize Firebase
+    const app = firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+
+    function updateNavigation() {
+      const signInOutLink = document.querySelector('#loginLogoutLink a');
+
+      function logout(event) {
+        event.preventDefault();
+        auth.signOut().then(() => {
+          console.log('User signed out');
+          signInOutLink.textContent = 'SignUp/SignIn';
+          signInOutLink.href = 'signup-signin.html'; // Link to your login page
+          signInOutLink.removeEventListener('click', logout); // Remove the logout listener
+        }).catch(error => {
+          console.error('Error signing out:', error);
+        });
+      }
+
+      auth.onAuthStateChanged(user => {
+        if (user) {
+          signInOutLink.textContent = 'Logout';
+          signInOutLink.addEventListener('click', logout);
+        } else {
+          signInOutLink.textContent = 'SignUp/SignIn';
+          signInOutLink.href = 'signup-signin.html'; // Link to your login page
+          signInOutLink.removeEventListener('click', logout); // Remove the logout listener
+        }
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', updateNavigation);
   </script>
+
 
 </body>
 
