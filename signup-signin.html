@@ -28,26 +28,29 @@
 
   <div class="container">
     <div class="form-box">
+
       <div class="button-box">
         <div id="btn"></div>
         <button type="button" id="clrbtn" class="toggle-btn" onclick="login()"><b>Log In</b></button>
         <button type="button" id="dlrbtn" class="toggle-btn" onclick="register()"><b>Register</b></button>
-
       </div>
-      <div id="login" class="input-group">
 
+      <div id="login" class="input-group">
         <input type="email" id="uname" class="input-field" placeholder="Email Id" required autocomplete="off">
         <input type="password" id="pword" class="input-field" placeholder="Password" required autocomplete="off">
         <button id="logging" class="submit-btn">Login</button>
         <h5 class="signup-link">Not a member? Click on Register</h5>
       </div>
+
       <div id="register" class="input-group">
         <input type="text" id="username" class="input-field" placeholder="User Id" required autocomplete="off">
         <input type="email" id="email" class="input-field" placeholder="Email Id" required autocomplete="off">
         <input type="password" id="password" class="input-field" placeholder="Password" required autocomplete="off">
         <button id="sign" class="submit-btn">Register</button>
       </div>
+
     </div>
+
   </div>
 
   <script>
@@ -70,11 +73,6 @@
       z.style.left = "0px";
       a.style.color = "#fff";
       s.style.color = "#000";
-    }
-    function signIn() {
-      x.style.left = "-400px";
-      y.style.left = "50px";
-      z.style.left = "110px";
     }
   </script>
 
@@ -107,6 +105,7 @@
     const auth = getAuth();
     const provider = new GoogleAuthProvider(app);
 
+    /*sign and logging are the id's which are accesed without using document.getElementById*/
     sign.addEventListener('click', async (e) => {
       var email = document.getElementById('email').value;
       var password = document.getElementById('password').value;

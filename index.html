@@ -142,6 +142,7 @@
         });
       }
 
+      /* Both logout functioan and onAuthStateChanged eventlistener does the same thing*/
       auth.onAuthStateChanged(user => {
         if (user) {
           signInOutLink.textContent = 'Logout';

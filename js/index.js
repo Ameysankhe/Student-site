@@ -1,9 +1,24 @@
-/*Added sweet alert for register to upload*/
+/*Fixed upload logical error*/
 
 const auth = firebase.auth();
 
 window.onload = function () {
   document.getElementById('fileButton').addEventListener('change', (e) => {
+    const user = auth.currentUser;
+    if (!user) {
+      /*window.location.href = 'signup-signin.html'; // Redirect to sign-in page if user is not authenticated
+      return;*/
+      Swal.fire({
+        title: 'Register to Upload Files',
+        text: 'You need to register before uploading files.',
+        icon: 'info',
+        confirmButtonText: 'OK'
+      }).then(() => {
+        window.location.href = 'signup-signin.html'; // Redirect to sign-in page after user acknowledgment
+      });
+      return;
+    }
+
     const promises = [];
     const files = e.target.files;
 
@@ -35,21 +50,6 @@ window.onload = function () {
       });
 
       promises.push(uploadPromise);
-    }
-
-    const user = auth.currentUser;
-    if (!user) {
-      /*window.location.href = 'signup-signin.html'; // Redirect to sign-in page if user is not authenticated
-      return;*/
-      Swal.fire({
-        title: 'Register to Upload Files',
-        text: 'You need to register before uploading files.',
-        icon: 'info',
-        confirmButtonText: 'OK'
-      }).then(() => {
-        window.location.href = 'signup-signin.html'; // Redirect to sign-in page after user acknowledgment
-      });
-      return;
     }
 
     Promise.all(promises)
