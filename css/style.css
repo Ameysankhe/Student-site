@@ -38,9 +38,11 @@ header::after{
     clear: both;
 }
 
-.logo{
+/* #logo{
     float: left;
-}
+    color: blueviolet;
+    border:3px solid red;
+} */
 
 nav{
     float: right;

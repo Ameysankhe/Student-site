@@ -15,9 +15,11 @@ body{
     box-sizing: border-box;
     font-family: var(--ff-primary);
     background-color: hsl(var(--clr-neutral-200));
+    width: 100%;
 }
 
 .upload{
+    max-width:100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -26,7 +28,7 @@ body{
     padding: 20px;
     border-radius: 20px;
     box-shadow: 1.5rem 2.75rem 5rem -3rem hsl(var(--clr-secondary-400) / 0.25);
-    background: hsl(var(--clr-neutral-100));
+    background-color: hsl(var(--clr-primary-400));
 } 
 
 .file-upload{
@@ -41,7 +43,6 @@ body{
     margin-top: 1rem;
 }
 
-
 #List{
     /*margin: 20px auto;*/
     margin: 8px auto;
@@ -55,6 +56,7 @@ body{
     margin-left: 5px;
 }
 
+
 caption{
     /*margin: 30px 0;*/
     margin-top: 5px;
@@ -63,7 +65,7 @@ caption{
 }
 
 table{
-    width: 500px;
+    width: 70%;
     border-spacing: 10px;
 }
 
@@ -75,12 +77,35 @@ th{
 table,th,td{
     border: 2px solid black;
     border-collapse: collapse;
-    border-color: hsl(var(--clr-secondary-100));
+    border-color: hsl(var(--clr-neutral-200));
 }
 
 th,td{
     padding: 10px;
 }
+
 table li{
     list-style: url(../images/icons8-google-books-32.png);
+
+}
+
+@media screen and (max-width: 768px) {
+    .upload {
+        margin:30px;
+        padding: 10px;
+        text-align: center;
+    }
+
+    table{
+        width: 20%;
+    }
+
+    #file-upload-button{
+        margin:20px auto;
+    }
+
+    .file-upload {
+        display: flex;
+        justify-content: center;
+    }
 }

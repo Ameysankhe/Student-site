@@ -18,15 +18,20 @@
 <body>
   <header>
     <div class="navbar">
-      <span id="logo">FIND NOTES</span>
-      <nav>
-        <ul>
-          <li><a href="">Home</a></li>
-          <li><a href="about.html">About Us</a></li>
+      <div id="logo">FIND NOTES</div>
+      <nav class="nav-bar">
+        <ul class="nav-menu">
+          <li class="nav-item"><a href="">Home</a></li>
+          <li class="nav-item"><a href="about.html">About Us</a></li>
           <!--<li><a href="signup-signin.html">SignUp/SignIn</a></li>-->
-          <li id="loginLogoutLink"><a href="signup-signin.html">SignUp/SignIn</a></li>
+          <li class="nav-item" id="loginLogoutLink"><a href="signup-signin.html">SignUp</a></li>
           <!-- This will be dynamically updated -->
         </ul>
+        <!-- <div class="hamburger">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div> -->
       </nav>
     </div>
   </header>
@@ -129,12 +134,12 @@
 
     function updateNavigation() {
       const signInOutLink = document.querySelector('#loginLogoutLink a');
-
+ 
       function logout(event) {
         event.preventDefault();
         auth.signOut().then(() => {
           console.log('User signed out');
-          signInOutLink.textContent = 'SignUp/SignIn';
+          signInOutLink.textContent = 'SignUp';
           signInOutLink.href = 'signup-signin.html'; // Link to your login page
           signInOutLink.removeEventListener('click', logout); // Remove the logout listener
         }).catch(error => {
@@ -148,7 +153,7 @@
           signInOutLink.textContent = 'Logout';
           signInOutLink.addEventListener('click', logout);
         } else {
-          signInOutLink.textContent = 'SignUp/SignIn';
+          signInOutLink.textContent = 'SignUp';
           signInOutLink.href = 'signup-signin.html'; // Link to your login page
           signInOutLink.removeEventListener('click', logout); // Remove the logout listener
         }
