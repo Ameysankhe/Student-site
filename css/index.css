@@ -40,6 +40,7 @@ body{
 .navbar{
   width: 80%;
   margin: 0 auto;
+  z-index: 100;
 }
 
 header{
@@ -53,8 +54,10 @@ header::after{
   clear: both;
 }
 
-.logo{
+#logo{
   float: left;
+  padding-top: 25px;
+  color: hsl(var(--clr-primary-400));
 }
 
 nav{
@@ -95,6 +98,29 @@ nav a::before{
 nav a:hover::before{
   width: 100%;
 }
+
+/* .hamburger{
+  display: none;
+  cursor: pointer;
+}
+
+.bar{
+  display: block;
+  width: 25px;
+  height: 3px;
+  margin: 5px auto;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  background-color: black;
+}
+
+/* Hamburger responsive  */
+/* @media(max-width:768px){
+  .hamburger{
+    display: block;
+  }
+
+} */ */
 
 #logo{
   display: inline-block;
@@ -347,10 +373,34 @@ h3 {
     overflow-x: hidden;
   }
 
+  .navbar #logo{
+    margin-left: 20px;
+    margin-bottom: 10px;
+  }
+
   .navbar{
-    display: block;
-    margin: 0;
-    padding: 0;
+    width: 100%;
+    display: flex;
+    margin-right: 20px;
+  }
+
+  .nav-bar{
+    overflow: hidden;
+  }
+
+  nav ul{
+    display: flex;
+    justify-content: space-around;
+  }
+
+  nav li a{
+    font-size: smaller;
+    padding-right: 30px;
+  }
+
+  .nav-menu>.nav-item:last-child{
+    margin-right: 10px;
+    padding-right: 10px;
   }
 
   .welcome-text h1{  
@@ -383,5 +433,8 @@ h3 {
     margin-top: 30px;
     margin-bottom: 30px;
   }
+
   
 }
+
+
