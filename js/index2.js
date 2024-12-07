@@ -1,5 +1,3 @@
-/*Added sweet alert for register to upload*/
-
 const auth = firebase.auth();
 
 window.onload = function () {
@@ -39,8 +37,6 @@ window.onload = function () {
 
     const user = auth.currentUser;
     if (!user) {
-      /*window.location.href = 'signup-signin.html'; // Redirect to sign-in page if user is not authenticated
-      return;*/
       Swal.fire({
         title: 'Register to Upload Files',
         text: 'You need to register before uploading files.',
@@ -71,7 +67,6 @@ window.onload = function () {
       })
       .catch((error) => {
         console.error('Error uploading:', error);
-        // Handle errors if necessary
       });
   });
 };

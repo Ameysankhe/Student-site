@@ -25,15 +25,9 @@
           <li class="nav-item" id="uploadsCount"></li>
           <li class="nav-item"><a href="">Home</a></li>
           <li class="nav-item"><a href="about.html">About Us</a></li>
-          <!--<li><a href="signup-signin.html">SignUp/SignIn</a></li>-->
           <li class="nav-item" id="loginLogoutLink"><a href="signup-signin.html">SignUp</a></li>
           <!-- This will be dynamically updated -->
         </ul>
-        <!-- <div class="hamburger">
-          <span class="bar"></span>
-          <span class="bar"></span>
-          <span class="bar"></span>
-        </div> -->
       </nav>
     </div>
   </header>
@@ -109,10 +103,7 @@
   </footer>
 
   <script>
-    // Get the current year
     const currentYear = new Date().getFullYear();
-  
-    // Update the year in the footer
     document.getElementById('currentYear').textContent = currentYear;
   </script>
 
@@ -156,9 +147,9 @@
           auth.signOut().then(() => {
             console.log('User signed out');
             signInOutLink.textContent = 'SignUp';
-            signInOutLink.href = 'signup-signin.html'; // Link to your login page
-            signInOutLink.removeEventListener('click', logout); // Remove the logout listener
-            userEmailLi.textContent = ''; // Clear email on logout
+            signInOutLink.href = 'signup-signin.html';
+            signInOutLink.removeEventListener('click', logout); 
+            userEmailLi.textContent = ''; 
           }).catch(error => {
             console.error('Error signing out:', error);
           });
@@ -170,8 +161,6 @@
           signInOutLink.href = '#';
           signInOutLink.addEventListener('click', logout);
 
-          // Display the user's email in the navbar
-          // userEmailLi.textContent = `Welcome, ${user.email}`;
           const userRef = database.ref(`users/${user.uid}/username`);
           userRef.once('value')
             .then(snapshot => {
@@ -184,10 +173,8 @@
         } else {
           // User is not logged in
           signInOutLink.textContent = 'SignUp';
-          signInOutLink.href = 'signup-signin.html'; // Link to your login page
-          signInOutLink.removeEventListener('click', logout); // Remove the logout listener
-
-          // Clear email
+          signInOutLink.href = 'signup-signin.html'; 
+          signInOutLink.removeEventListener('click', logout); 
           userEmailLi.textContent = '';
         }
       });
@@ -195,18 +182,18 @@
     }
 
     function getUserUploadsCount(uid) {
-      const uploadsRef = firebase.database().ref(`users/${uid}/uploadCount`);  // Corrected string interpolation
+      const uploadsRef = firebase.database().ref(`users/${uid}/uploadCount`);  
 
       uploadsRef.once('value')
         .then(snapshot => {
           const uploadCount = snapshot.val() || 0;
 
-          console.log(`User ${uid} has made ${uploadCount} uploads.`);  // Corrected string interpolation
+          console.log(`User ${uid} has made ${uploadCount} uploads.`); 
 
           // Update UI
           const uploadsElement = document.querySelector('#uploadsCount');
           if (uploadsElement) {
-            uploadsElement.textContent = `No. of Uploads: ${uploadCount}`;  // Corrected string interpolation
+            uploadsElement.textContent = `No. of Uploads: ${uploadCount}`;  
           }
         })
         .catch(error => {
@@ -214,7 +201,7 @@
         });
     }
 
-    // Example: Call this function after the user logs in
+    // Calling this function after the user logs in
     auth.onAuthStateChanged(user => {
       if (user) {
         getUserUploadsCount(user.uid);

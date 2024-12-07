@@ -102,9 +102,9 @@ nav a:hover::before{
 /* .hamburger{
   display: none;
   cursor: pointer;
-}
+} */
 
-.bar{
+/* .bar{
   display: block;
   width: 25px;
   height: 3px;
@@ -112,15 +112,15 @@ nav a:hover::before{
   -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
   background-color: black;
-}
-
-/* Hamburger responsive  */
-/* @media(max-width:768px){
+} */
+/* 
+Hamburger responsive 
+@media(max-width:768px){
   .hamburger{
     display: block;
   }
 
-} */ */
+} */
 
 #logo{
   display: inline-block;
