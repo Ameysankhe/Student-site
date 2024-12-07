@@ -54,6 +54,11 @@ window.onload = function () {
 
     Promise.all(promises)
       .then(() => {
+        const userRef = firebase.database().ref(`users/${user.uid}`);
+        userRef.child('uploadCount').get().then((snapshot) => {
+          const currentCount = snapshot.val() || 0; // Default to 0 if no uploads exist
+          userRef.update({ uploadCount: currentCount + files.length }); // Increment by the number of files uploaded
+        });
         setTimeout(() => {
           Swal.fire({
             title: 'All Uploads Complete!',

@@ -21,6 +21,8 @@
       <div id="logo">FIND NOTES</div>
       <nav class="nav-bar">
         <ul class="nav-menu">
+          <li class="nav-item" id="userEmail"></li>
+          <li class="nav-item" id="uploadsCount"></li>
           <li class="nav-item"><a href="">Home</a></li>
           <li class="nav-item"><a href="about.html">About Us</a></li>
           <!--<li><a href="signup-signin.html">SignUp/SignIn</a></li>-->
@@ -50,7 +52,7 @@
 
   <!-- Inventory Grid -->
   <div class="welcome-text">
-    <h1>Welcome to the ultimate Inventory!</h1>
+    <h1>Computer engineering resources!</h1>
   </div>
   <main class="semesters">
     <article class="semester one flow bg-primary-400 quote text-neutral-100">
@@ -103,8 +105,16 @@
   </main>
 
   <footer>
-    <h4>&copy; 2022 FindNotes | All rights reserved ltd.</h4>
+    <h4>&copy; <span id="currentYear"></span> FindNotes | All rights reserved ltd.</h4>
   </footer>
+
+  <script>
+    // Get the current year
+    const currentYear = new Date().getFullYear();
+  
+    // Update the year in the footer
+    document.getElementById('currentYear').textContent = currentYear;
+  </script>
 
   <!--<script>
     document.querySelector(".side-panel-toggle").addEventListener("click", () => {
@@ -114,6 +124,8 @@
 
   <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-storage.js"></script>
 
   <script>
     // Your Firebase configuration
@@ -131,34 +143,83 @@
     // Initialize Firebase
     const app = firebase.initializeApp(firebaseConfig);
     const auth = firebase.auth();
+    const database = firebase.database();
 
     function updateNavigation() {
-      const signInOutLink = document.querySelector('#loginLogoutLink a');
- 
-      function logout(event) {
-        event.preventDefault();
-        auth.signOut().then(() => {
-          console.log('User signed out');
-          signInOutLink.textContent = 'SignUp';
-          signInOutLink.href = 'signup-signin.html'; // Link to your login page
-          signInOutLink.removeEventListener('click', logout); // Remove the logout listener
-        }).catch(error => {
-          console.error('Error signing out:', error);
-        });
-      }
 
-      /* Both logout functioan and onAuthStateChanged eventlistener does the same thing*/
       auth.onAuthStateChanged(user => {
+        const signInOutLink = document.querySelector('#loginLogoutLink a');
+        const userEmailLi = document.querySelector('#userEmail');
+
+        function logout(event) {
+          event.preventDefault();
+          auth.signOut().then(() => {
+            console.log('User signed out');
+            signInOutLink.textContent = 'SignUp';
+            signInOutLink.href = 'signup-signin.html'; // Link to your login page
+            signInOutLink.removeEventListener('click', logout); // Remove the logout listener
+            userEmailLi.textContent = ''; // Clear email on logout
+          }).catch(error => {
+            console.error('Error signing out:', error);
+          });
+        }
+
         if (user) {
+          // User is logged in
           signInOutLink.textContent = 'Logout';
+          signInOutLink.href = '#';
           signInOutLink.addEventListener('click', logout);
+
+          // Display the user's email in the navbar
+          // userEmailLi.textContent = `Welcome, ${user.email}`;
+          const userRef = database.ref(`users/${user.uid}/username`);
+          userRef.once('value')
+            .then(snapshot => {
+              const username = snapshot.val();
+              userEmailLi.textContent = username ? `Welcome, ${username}` : `Welcome, ${user.email}`;
+            })
+            .catch(error => {
+              console.error('Error fetching username:', error);
+            });
         } else {
+          // User is not logged in
           signInOutLink.textContent = 'SignUp';
           signInOutLink.href = 'signup-signin.html'; // Link to your login page
           signInOutLink.removeEventListener('click', logout); // Remove the logout listener
+
+          // Clear email
+          userEmailLi.textContent = '';
         }
       });
+
     }
+
+    function getUserUploadsCount(uid) {
+      const uploadsRef = firebase.database().ref(`users/${uid}/uploadCount`);  // Corrected string interpolation
+
+      uploadsRef.once('value')
+        .then(snapshot => {
+          const uploadCount = snapshot.val() || 0;
+
+          console.log(`User ${uid} has made ${uploadCount} uploads.`);  // Corrected string interpolation
+
+          // Update UI
+          const uploadsElement = document.querySelector('#uploadsCount');
+          if (uploadsElement) {
+            uploadsElement.textContent = `No. of Uploads: ${uploadCount}`;  // Corrected string interpolation
+          }
+        })
+        .catch(error => {
+          console.error('Error fetching uploads:', error);
+        });
+    }
+
+    // Example: Call this function after the user logs in
+    auth.onAuthStateChanged(user => {
+      if (user) {
+        getUserUploadsCount(user.uid);
+      }
+    });
 
     document.addEventListener('DOMContentLoaded', updateNavigation);
   </script>

@@ -43,7 +43,7 @@
       </div>
 
       <div id="register" class="input-group">
-        <input type="text" id="username" class="input-field" placeholder="User Id" required autocomplete="off">
+        <input type="text" id="username" class="input-field" placeholder="Username" required autocomplete="off">
         <input type="email" id="email" class="input-field" placeholder="Email Id" required autocomplete="off">
         <input type="password" id="password" class="input-field" placeholder="Password" required autocomplete="off">
         <button id="sign" class="submit-btn">Register</button>
@@ -74,6 +74,7 @@
       a.style.color = "#fff";
       s.style.color = "#000";
     }
+
   </script>
 
   <script type="module">
@@ -105,11 +106,50 @@
     const auth = getAuth();
     const provider = new GoogleAuthProvider(app);
 
+    // Email format validation
+    function isValidEmail(email) {
+      const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+      return regex.test(email);
+    }
+
+
+    // Password strength validation
+    function isValidPassword(password) {
+      // Minimum 8 characters, at least 1 letter, 1 number, and 1 special character
+      const regex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+      return regex.test(password);
+    }
+
+    // Username length validation
+    function isValidUsername(username) {
+      return username.length >= 3;
+    }
+
+
+
     /*sign and logging are the id's which are accesed without using document.getElementById*/
     sign.addEventListener('click', async (e) => {
       var email = document.getElementById('email').value;
       var password = document.getElementById('password').value;
       var username = document.getElementById('username').value;
+
+      // Validate email format
+      if (!isValidEmail(email)) {
+        alert('Please enter a valid email address.');
+        return;
+      }
+
+      // Validate password strength
+      if (!isValidPassword(password)) {
+        alert('Password must be at least 8 characters long, include one number, and one special character.');
+        return;
+      }
+
+      // Validate username length
+      if (!isValidUsername(username)) {
+        alert('Username must be at least 3 characters long.');
+        return;
+      }
 
       try {
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
@@ -119,7 +159,12 @@
         set(ref(database, 'users/' + user.uid), {
           username: username,
           email: email
+        }).then(() => {
+          console.log("User data saved successfully!");
+        }).catch((error) => {
+          console.error("Error saving data: ", error);
         });
+
 
         alert('You have successfully registered!!!!');
         // Move to login panel after successful registration
@@ -128,7 +173,13 @@
         const errorCode = error.code;
         const errorMessage = error.message;
 
-        alert('Invalid Credentials: ' + error.message);
+        if (errorCode === 'auth/email-already-in-use') {
+          alert('This email is already in use. Please use a different email.');
+        } 
+        else {
+           alert('Invalid Credentials: ' + error.message);
+        }
+
       }
     });
 
@@ -154,8 +205,12 @@
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
-
-          alert("Invalid Credentials");
+          if (errorCode === 'auth/invalid-email') {
+            alert('Invalid email address format.');
+          }
+          else{
+            alert('Invalid Credentials: ' + error.message);
+          }
         });
 
     });
