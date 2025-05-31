@@ -22,7 +22,7 @@
       <nav class="nav-bar">
         <ul class="nav-menu">
           <li class="nav-item" id="userEmail"></li>
-          <li class="nav-item"><a href="">Home</a></li>>
+          <li class="nav-item"><a href="">Home</a></li>
           <li class="nav-item" id="profileLink"><a href="profile.html">Profile</a></li>
           <li class="nav-item"><a href="leaderboard.html">Leaderboard</a></li>
           <li class="nav-item"><a href="about.html">About Us</a></li>
@@ -142,7 +142,7 @@
       auth.onAuthStateChanged(user => {
         const signInOutLink = document.querySelector('#loginLogoutLink a');
         const userEmailLi = document.querySelector('#userEmail');
-        const profileLi     = document.getElementById('profileLink');
+        const profileLi = document.getElementById('profileLink');
 
         function logout(event) {
           event.preventDefault();
@@ -152,8 +152,8 @@
             signInOutLink.textContent = 'Sign Up/Sign In';
             signInOutLink.href = 'signup-signin.html';
             signInOutLink.classList.remove('logout-btn');
-            signInOutLink.removeEventListener('click', logout); 
-            userEmailLi.textContent = ''; 
+            signInOutLink.removeEventListener('click', logout);
+            userEmailLi.textContent = '';
           }).catch(error => {
             console.error('Error signing out:', error);
           });
@@ -161,7 +161,7 @@
 
         if (user) {
           // User is logged in
-          profileLi.style.display = ''; 
+          profileLi.style.display = '';
           signInOutLink.textContent = 'Logout';
           signInOutLink.href = '#';
           signInOutLink.classList.add('logout-btn');
@@ -180,9 +180,9 @@
           // User is not logged in
           profileLi.style.display = 'none';
           signInOutLink.textContent = 'Sign Up/Sign In';
-          signInOutLink.href = 'signup-signin.html'; 
+          signInOutLink.href = 'signup-signin.html';
           signInOutLink.classList.remove('logout-btn');
-          signInOutLink.removeEventListener('click', logout); 
+          signInOutLink.removeEventListener('click', logout);
           userEmailLi.textContent = '';
         }
       });

@@ -72,7 +72,7 @@
         const auth = firebase.auth();
         const database = firebase.database();
 
-         function updateNavigation() {
+        function updateNavigation() {
             auth.onAuthStateChanged(user => {
                 const signInOutLink = document.querySelector('#loginLogoutLink a');
                 const userEmailLi = document.querySelector('#userEmail');

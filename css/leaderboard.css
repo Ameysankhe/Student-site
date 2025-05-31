@@ -1,12 +1,12 @@
 body {
-    font-family: "Barlow Semi Condensed", sans-serif;
-    font-weight: var(--fw-400);
-    grid-template-rows: auto 1fr auto;
+  font-family: "Barlow Semi Condensed", sans-serif;
+  font-weight: var(--fw-400);
+  grid-template-rows: auto 1fr auto;
 }
 
 
 /* styling navbar */
-.navbar{
+.navbar {
   width: 80%;
   margin: 0 auto;
   z-index: 100;
@@ -15,18 +15,18 @@ body {
   align-items: center;
 }
 
-header{
+header {
   height: 80px;
   background-color: white;
 }
 
-header::after{
+header::after {
   content: '';
   display: table;
   clear: both;
 }
 
-#logo{
+#logo {
   color: hsl(var(--clr-primary-400));
   display: inline-block;
   margin-top: 20px;
@@ -35,12 +35,12 @@ header::after{
   border: 2px solid hsl(var(--clr-primary-400));
 }
 
-.nav-bar{
+.nav-bar {
   display: flex;
   align-items: center;
 }
 
-nav ul{
+nav ul {
   margin: 0;
   padding: 0;
   list-style: none;
@@ -48,20 +48,20 @@ nav ul{
   align-items: center;
 }
 
-nav li{
+nav li {
   padding-top: 20px;
   margin-left: 70px;
   position: relative;
 }
 
-nav a{
+nav a {
   color: black;
   text-decoration: none;
   text-transform: uppercase;
   font-size: 15px;
 }
 
-nav a::before{
+nav a::before {
   content: '';
   display: block;
   height: 5px;
@@ -72,19 +72,19 @@ nav a::before{
   transition: all ease-in-out 250ms;
 }
 
-nav a:hover::before{
+nav a:hover::before {
   width: 100%;
 }
 
 /* Hamburger menu styling */
-.hamburger{
+.hamburger {
   display: none;
   flex-direction: column;
   cursor: pointer;
   margin-left: 20px;
 }
 
-.bar{
+.bar {
   width: 25px;
   height: 3px;
   background-color: black;
@@ -150,7 +150,7 @@ nav a:hover::before{
     margin: 0;
   }
 
-   /* Fix logout button in mobile menu */
+  /* Fix logout button in mobile menu */
   .nav-menu .logout-btn {
     display: inline-block !important;
     margin: 10px 0 !important;
@@ -210,8 +210,8 @@ nav a:hover::before{
 }
 
 /* styling footer */
-footer{
-  background-color:white;
+footer {
+  background-color: white;
   margin-top: 10px;
   padding: 5px;
   text-align: center;
@@ -219,7 +219,7 @@ footer{
   font-size: 15px;
 }
 
-footer h4{
+footer h4 {
   margin-top: 10px;
   margin-bottom: 10px;
 }

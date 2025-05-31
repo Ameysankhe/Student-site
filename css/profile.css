@@ -204,7 +204,7 @@ footer h4 {
         display: flex;
     }
 
-    .navbar{
+    .navbar {
         width: 95%;
     }
 
@@ -249,30 +249,30 @@ footer h4 {
 }
 
 @media (max-width: 500px) {
-  .profile-card {
-    margin-top: 25%;
-    margin-left: 0.5rem;
-    margin-right: 0.5rem;
-  }
-  
-  .profile-avatar-section {
-    padding: 1rem;
-  }
-  
-  .profile-avatar {
-    width: 80px;
-    height: 80px;
-  }
-  
-  .profile-avatar .material-icons {
-    font-size: 2.5rem;
-  }
-  
-  .profile-info-section {
-    padding: 1rem;
-  }
-  
-  .profile-info-label {
-    min-width: 80px;
-  }
+    .profile-card {
+        margin-top: 25%;
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
+    }
+
+    .profile-avatar-section {
+        padding: 1rem;
+    }
+
+    .profile-avatar {
+        width: 80px;
+        height: 80px;
+    }
+
+    .profile-avatar .material-icons {
+        font-size: 2.5rem;
+    }
+
+    .profile-info-section {
+        padding: 1rem;
+    }
+
+    .profile-info-label {
+        min-width: 80px;
+    }
 }
