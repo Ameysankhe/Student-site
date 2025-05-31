@@ -17,11 +17,18 @@
   <header>
     <div class="navbar">
       <span id="logo">FIND NOTES</span>
-      <nav>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="about.html">About Us</a></li>
+      <nav class="nav-bar">
+        <ul class="nav-menu">
+          <li class="nav-item"><a href="index.html">Home</a></li>
+          <li class="nav-item"><a href="about.html">About Us</a></li>
+          <li class="nav-item"><a href="leaderboard.html">Leaderboard</a></li>
+          <li class="nav-item"><a href="signup-signin.html">Sign Up/Sign In</a></li>
         </ul>
+        <div class="hamburger">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
       </nav>
     </div>
   </header>
@@ -52,6 +59,10 @@
     </div>
 
   </div>
+
+  <footer>
+    <h4>&copy; <span id="currentYear"></span> FindNotes | All rights reserved ltd.</h4>
+  </footer>
 
   <script>
     var x = document.getElementById("login");
@@ -166,9 +177,9 @@
 
         if (errorCode === 'auth/email-already-in-use') {
           alert('This email is already in use. Please use a different email.');
-        } 
+        }
         else {
-           alert('Invalid Credentials: ' + error.message);
+          alert('Invalid Credentials: ' + error.message);
         }
 
       }
@@ -199,11 +210,24 @@
           if (errorCode === 'auth/invalid-email') {
             alert('Invalid email address format.');
           }
-          else{
+          else {
             alert('Invalid Credentials: ' + error.message);
           }
         });
 
+    });
+
+    // Update copyright year
+    const currentYear = new Date().getFullYear();
+    document.getElementById('currentYear').textContent = currentYear;
+
+    // Hamburger menu functionality
+    const hamburger = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('.nav-menu');
+
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      navMenu.classList.toggle('active');
     });
   </script>
 </body>

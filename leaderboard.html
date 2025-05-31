@@ -5,14 +5,9 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&family=Spartan&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600&display=swap"
-    rel="stylesheet">
+  <title>Leaderboard</title>
   <link rel="stylesheet" href="css/index.css">
-  <title>Home</title>
+  <link rel="stylesheet" href="css/leaderboard.css">
 </head>
 
 <body>
@@ -21,8 +16,7 @@
       <div id="logo">FIND NOTES</div>
       <nav class="nav-bar">
         <ul class="nav-menu">
-          <li class="nav-item" id="userEmail"></li>
-          <li class="nav-item"><a href="">Home</a></li>>
+          <li class="nav-item"><a href="/">Home</a></li>
           <li class="nav-item" id="profileLink"><a href="profile.html">Profile</a></li>
           <li class="nav-item"><a href="leaderboard.html">Leaderboard</a></li>
           <li class="nav-item"><a href="about.html">About Us</a></li>
@@ -37,76 +31,32 @@
     </div>
   </header>
 
-  <!-- Inventory Grid -->
-  <div class="welcome-text">
-    <h1>Computer engineering resources!</h1>
+  <div class="leaderboard-container">
+    <h1>Top Contributors</h1>
+    <table class="leaderboard-table">
+      <thead>
+        <tr>
+          <th>Rank</th>
+          <th>User</th>
+          <th>Uploads</th>
+        </tr>
+      </thead>
+      <tbody id="leaderboardBody">
+        <!-- Rows populated via JavaScript -->
+      </tbody>
+    </table>
   </div>
-  <main class="semesters">
-    <article class="semester one flow bg-primary-400 quote text-neutral-100">
-      <p>
-        Semester One
-      </p>
-      <p>
-        <a href="upload.html">Browse ></a>
-      </p>
-    </article>
-    <article class="semester flow bg-secondary-400 text-neutral-100">
-      <p>
-        Semester Two
-      </p>
-      <p>
-        <a href="upload1.html">Browse ></a>
-      </p>
-    </article>
-    <article class="semester flow bg-neutral-100 text-primary-400">
-      <p>
-        Semester Three
-      <p>
-        <a href="upload2.html">Browse ></a>
-      </p>
-    </article>
-    <article class="semester one flow bg-secondary-500 text-neutral-100">
-      <p>
-        Semester Four
-      </p>
-      <p>
-        <a href="upload3.html">Browse ></a>
-      </p>
-    </article>
-    <article class="semester bg-neutral-100 text-primary-400">
-      <p>
-        Semester Five
-      </p>
-      <p>
-        <a href="upload4.html">Browse ></a>
-      </p>
-    </article>
-    <article class="semester one flow bg-primary-400 quote text-neutral-100">
-      <p>
-        Semester Six
-      </p>
-      <p>
-        <a href="upload5.html">Browse ></a>
-      </p>
-    </article>
-  </main>
 
   <footer>
     <h4>&copy; <span id="currentYear"></span> FindNotes | All rights reserved ltd.</h4>
   </footer>
 
-  <script>
-    const currentYear = new Date().getFullYear();
-    document.getElementById('currentYear').textContent = currentYear;
-  </script>
-
+  <!-- Firebase SDKs -->
   <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-database.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-storage.js"></script>
-
   <script>
-    // Your Firebase configuration
+    // Initialize Firebase
     const firebaseConfig = {
       apiKey: "AIzaSyDR0ZrU5EoNIBlnXsliOrjbE-0z_XckCgM",
       authDomain: "app-demo-f9bbe.firebaseapp.com",
@@ -117,28 +67,48 @@
       appId: "1:825109736153:web:67a12c78d27248b7632cc8",
       measurementId: "G-LDJ3TXH3DL"
     };
-
-    // Initialize Firebase
-    const app = firebase.initializeApp(firebaseConfig);
+    firebase.initializeApp(firebaseConfig);
     const auth = firebase.auth();
-    const database = firebase.database();
+    const db = firebase.database();
 
-    // Hamburger menu functionality
-    const hamburger = document.querySelector('.hamburger');
-    const navMenu = document.querySelector('.nav-menu');
+    // Ensure DOM is ready before running script
+    document.addEventListener("DOMContentLoaded", () => {
+      const tbody = document.getElementById("leaderboardBody");
+      db.ref("users")
+        .once("value")
+        .then((snapshot) => {
+          const usersData = snapshot.val();
 
-    hamburger.addEventListener('click', () => {
-      hamburger.classList.toggle('active');
-      navMenu.classList.toggle('active');
+          const users = [];
+          snapshot.forEach((childSnap) => {
+            const data = childSnap.val();
+            users.push({
+              name: data.username || "Anonymous",
+              uploads: data.uploadCount || 0
+            });
+          });
+
+          // Sort descending by uploads
+          users.sort((a, b) => b.uploads - a.uploads);
+
+          // Clear any “previous” rows, then rebuild
+          tbody.innerHTML = "";
+          users.forEach((u, idx) => {
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
+                <td>${idx + 1}</td>
+                <td>${u.name}</td>
+                <td>${u.uploads}</td>
+            `;
+            tbody.appendChild(tr);
+          });
+        })
+        .catch((err) => {
+          console.error("Error loading leaderboard:", err);
+        });
     });
 
-    // Close menu when clicking on a nav link
-    document.querySelectorAll('.nav-item a').forEach(n => n.addEventListener('click', () => {
-      hamburger.classList.remove('active');
-      navMenu.classList.remove('active');
-    }));
-
-    function updateNavigation() {
+        function updateNavigation() {
       auth.onAuthStateChanged(user => {
         const signInOutLink = document.querySelector('#loginLogoutLink a');
         const userEmailLi = document.querySelector('#userEmail');
@@ -189,8 +159,18 @@
     }
 
     document.addEventListener('DOMContentLoaded', updateNavigation);
-  </script>
 
+    const hamburger = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('.nav-menu');
+
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      navMenu.classList.toggle('active');
+    });
+
+    const currentYear = new Date().getFullYear();
+    document.getElementById('currentYear').textContent = currentYear;
+  </script>
 </body>
 
 </html>

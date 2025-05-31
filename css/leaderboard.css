@@ -1,0 +1,240 @@
+body {
+    font-family: "Barlow Semi Condensed", sans-serif;
+    font-weight: var(--fw-400);
+    grid-template-rows: auto 1fr auto;
+}
+
+
+/* styling navbar */
+.navbar{
+  width: 80%;
+  margin: 0 auto;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header{
+  height: 80px;
+  background-color: white;
+}
+
+header::after{
+  content: '';
+  display: table;
+  clear: both;
+}
+
+#logo{
+  color: hsl(var(--clr-primary-400));
+  display: inline-block;
+  margin-top: 20px;
+  padding: 8px;
+  font-weight: 600;
+  border: 2px solid hsl(var(--clr-primary-400));
+}
+
+.nav-bar{
+  display: flex;
+  align-items: center;
+}
+
+nav ul{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  align-items: center;
+}
+
+nav li{
+  padding-top: 20px;
+  margin-left: 70px;
+  position: relative;
+}
+
+nav a{
+  color: black;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 15px;
+}
+
+nav a::before{
+  content: '';
+  display: block;
+  height: 5px;
+  width: 0%;
+  background-color: orangered;
+  position: absolute;
+  top: 0;
+  transition: all ease-in-out 250ms;
+}
+
+nav a:hover::before{
+  width: 100%;
+}
+
+/* Hamburger menu styling */
+.hamburger{
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  margin-left: 20px;
+}
+
+.bar{
+  width: 25px;
+  height: 3px;
+  background-color: black;
+  margin: 3px 0;
+  transition: 0.3s;
+}
+
+/* Hamburger animation */
+.hamburger.active .bar:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active .bar:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.hamburger.active .bar:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+  }
+
+  .nav-menu {
+    position: absolute;
+    left: -100%;
+    top: 80px;
+    flex-direction: column;
+    background-color: white;
+    width: 100%;
+    text-align: center;
+    transition: 0.3s;
+    box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+    z-index: 99;
+    padding: 20px 0;
+    max-height: calc(100vh - 80px);
+    overflow-y: auto;
+  }
+
+  .nav-menu.active {
+    left: 0;
+  }
+
+  .nav-item {
+    margin: 1rem 0;
+    padding: 0 20px;
+  }
+
+  nav li {
+    margin-left: 0;
+    padding-top: 0;
+  }
+
+  .navbar {
+    margin-top: 20px;
+    width: 95%;
+  }
+
+  #logo {
+    margin: 0;
+  }
+
+   /* Fix logout button in mobile menu */
+  .nav-menu .logout-btn {
+    display: inline-block !important;
+    margin: 10px 0 !important;
+    white-space: nowrap !important;
+  }
+}
+
+/* Container styling */
+.leaderboard-container {
+  max-width: 600px;
+  margin: 3rem auto;
+  padding: 1.5rem;
+  background-color: hsl(var(--clr-neutral-100));
+  border-radius: 0.75rem;
+  box-shadow: 0 1rem 2rem -1rem hsl(var(--clr-secondary-400) / 0.25);
+}
+
+.leaderboard-container h1 {
+  text-align: center;
+  font-size: var(--fs-600);
+  margin-bottom: 1rem;
+  color: hsl(var(--clr-secondary-500));
+}
+
+/* Table styling */
+.leaderboard-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--fs-400);
+}
+
+.leaderboard-table th,
+.leaderboard-table td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid hsl(var(--clr-neutral-200));
+}
+
+.leaderboard-table thead th {
+  background-color: hsl(var(--clr-secondary-500));
+  color: hsl(var(--clr-neutral-100));
+  font-weight: 600;
+}
+
+.leaderboard-table tbody tr:nth-child(even) {
+  background-color: hsl(var(--clr-neutral-200));
+}
+
+.leaderboard-table tbody tr:hover {
+  background-color: hsl(var(--clr-secondary-100));
+}
+
+.leaderboard-table td:first-child {
+  width: 4rem;
+  font-weight: 500;
+  color: hsl(var(--clr-secondary-500));
+}
+
+/* styling footer */
+footer{
+  background-color:white;
+  margin-top: 10px;
+  padding: 5px;
+  text-align: center;
+  color: black;
+  font-size: 15px;
+}
+
+footer h4{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+/* Responsive container */
+@media (max-width: 768px) {
+  .leaderboard-container {
+    margin: 1.5rem 1rem;
+    padding: 1rem;
+    max-width: none;
+  }
+
+  footer h4 {
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+}

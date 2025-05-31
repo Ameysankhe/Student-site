@@ -41,6 +41,9 @@ body{
   width: 80%;
   margin: 0 auto;
   z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 header{
@@ -55,25 +58,30 @@ header::after{
 }
 
 #logo{
-  float: left;
-  padding-top: 25px;
   color: hsl(var(--clr-primary-400));
+  display: inline-block;
+  margin-top: 20px;
+  padding: 8px;
+  font-weight: 600;
+  border: 2px solid hsl(var(--clr-primary-400));
 }
 
-nav{
-  float: right;
+.nav-bar{
+  display: flex;
+  align-items: center;
 }
 
 nav ul{
   margin: 0;
   padding: 0;
   list-style: none;
+  display: flex;
+  align-items: center;
 }
 
 nav li{
-  display: inline-block;
-  margin-left:70px;
-  padding-top: 25px;
+  padding-top: 20px;
+  margin-left: 70px;
   position: relative;
 }
 
@@ -99,38 +107,105 @@ nav a:hover::before{
   width: 100%;
 }
 
-/* .hamburger{
-  display: none;
-  cursor: pointer;
-} */
+/* Logout button styling */
+.logout-btn {
+  background-color: orange !important;
+  color: white !important;
+  padding: 8px 16px !important;
+  border-radius: 4px !important;
+  border: none !important;
+  transition: background-color 0.3s ease !important;
+}
 
-/* .bar{
-  display: block;
+.logout-btn:hover {
+  background-color: #ff8c00 !important;
+}
+
+.logout-btn::before {
+  display: none !important;
+}
+
+/* Hamburger menu styling */
+.hamburger{
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  margin-left: 20px;
+}
+
+.bar{
   width: 25px;
   height: 3px;
-  margin: 5px auto;
-  -webkit-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
   background-color: black;
-} */
-/* 
-Hamburger responsive 
-@media(max-width:768px){
-  .hamburger{
-    display: block;
+  margin: 3px 0;
+  transition: 0.3s;
+}
+
+/* Hamburger animation */
+.hamburger.active .bar:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active .bar:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.hamburger.active .bar:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
   }
 
-} */
+  .nav-menu {
+    position: absolute;
+    left: -100%;
+    top: 80px;
+    flex-direction: column;
+    background-color: white;
+    width: 100%;
+    text-align: center;
+    transition: 0.3s;
+    box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+    z-index: 99;
+    padding: 20px 0;
+    max-height: calc(100vh - 80px);
+    overflow-y: auto;
+  }
 
-#logo{
-  display: inline-block;
-  margin: 20px;
-  padding: 8px;
-  font-weight: 600;
-  border: 2px solid hsl(var(--clr-primary-400));
-  color: hsl(var(--clr-primary-400));
+  .nav-menu.active {
+    left: 0;
+  }
+
+  .nav-item {
+    margin: 1rem 0;
+    padding: 0 20px;
+  }
+
+  nav li {
+    margin-left: 0;
+    padding-top: 0;
+  }
+
+  .navbar {
+    margin-top: 20px;
+    width: 95%;
+  }
+
+  #logo {
+    margin: 0;
+  }
+
+   /* Fix logout button in mobile menu */
+  .nav-menu .logout-btn {
+    display: inline-block !important;
+    margin: 10px 0 !important;
+    white-space: nowrap !important;
+  }
 }
-/* end */
 
 /* styling footer */
 footer{
@@ -238,7 +313,6 @@ h3 {
   grid-template-columns: repeat(3,1fr );
   gap: 1.5rem;
   width: min(95%, 70rem);
-  /*grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); /*auto-wrap things like flex*/
   padding-block: 2rem;
   margin-inline: auto;
   opacity: 0;
@@ -303,7 +377,6 @@ h3 {
 .welcome-text h1{
   font-family: 'Source Code Pro', monospace;
   position: relative;
-  /*margin-top: 50px;*/
   margin-left: 26%;
   width: max-content;
   color: hsl(var(--clr-secondary-400));
@@ -373,47 +446,21 @@ h3 {
     overflow-x: hidden;
   }
 
-  .navbar #logo{
-    margin-left: 20px;
-    margin-bottom: 10px;
-  }
-
-  .navbar{
-    width: 100%;
-    display: flex;
-    margin-right: 20px;
-  }
-
-  .nav-bar{
-    overflow: hidden;
-  }
-
-  nav ul{
-    display: flex;
-    justify-content: space-around;
-  }
-
-  nav li a{
-    font-size: smaller;
-    padding-right: 30px;
-  }
-
-  .nav-menu>.nav-item:last-child{
-    margin-right: 10px;
-    padding-right: 10px;
+  .welcome-text {
+    padding: 0 10px;
+    margin: 10px 0;
   }
 
   .welcome-text h1{  
+    font-size: clamp(1rem, 5vw, 1.5rem);
     text-align: center;
-    max-width: 50%;
-    margin-left: 95px;
-    margin-top: 10px;
+    margin: 0 auto;
+    padding: 0;
+    max-width: 100%;
   }
 
   .semester{
     height: 20vh;
-    /* height: 118%;
-    width: 55%; */
     width: 90vw;
     margin-left: 10px;
   }
@@ -433,8 +480,4 @@ h3 {
     margin-top: 30px;
     margin-bottom: 30px;
   }
-
-  
 }
-
-

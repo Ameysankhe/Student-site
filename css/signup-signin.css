@@ -15,9 +15,24 @@
   font-family: "Barlow Semi Condensed", sans-serif;
 }
 
+html,
+body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 .navbar {
   width: 80%;
   margin: 0 auto;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 header {
@@ -31,24 +46,31 @@ header::after {
   clear: both;
 }
 
-.logo {
-  float: left;
+#logo {
+  color: hsl(var(--clr-primary-400));
+  display: inline-block;
+  margin-top: 20px;
+  padding: 8px;
+  font-weight: 600;
+  border: 2px solid hsl(var(--clr-primary-400));
 }
 
-nav {
-  float: right;
+.nav-bar {
+  display: flex;
+  align-items: center;
 }
 
 nav ul {
   margin: 0;
   padding: 0;
   list-style: none;
+  display: flex;
+  align-items: center;
 }
 
 nav li {
-  display: inline-block;
+  padding-top: 20px;
   margin-left: 70px;
-  padding-top: 25px;
   position: relative;
 }
 
@@ -74,29 +96,51 @@ nav a:hover::before {
   width: 100%;
 }
 
-#logo{
-  display: inline-block;
-  margin: 20px;
-  padding: 8px;
-  font-weight: 600;
-  border: 2px solid hsl(var(--clr-primary-400));
-  color: hsl(var(--clr-primary-400));
+/* Hamburger menu styling */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  margin-left: 20px;
+}
+
+.bar {
+  width: 25px;
+  height: 3px;
+  background-color: black;
+  margin: 3px 0;
+  transition: 0.3s;
+}
+
+/* Hamburger animation */
+.hamburger.active .bar:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active .bar:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.hamburger.active .bar:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
 }
 
 .container {
-  height: 100%;
+  flex: 1;
   width: 100%;
   background: hsl(var(--clr-neutral-200));
   background-position: center;
   background-size: cover;
-  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 0;
 }
 
 .form-box {
   width: 380px;
   height: 400px;
   position: relative;
-  margin: 6% auto;
   background: hsl(var(--clr-neutral-100));
   padding: 5px;
   overflow: hidden;
@@ -184,13 +228,6 @@ nav a:hover::before {
   margin: 30px 10px 30px 0;
 }
 
-/*span {
-  color: #777;
-  font-size: 12px;
-  bottom: 68px;
-  position: absolute;
-}*/
-
 #login {
   left: 50px;
 }
@@ -211,6 +248,19 @@ nav a:hover::before {
 .signup-link a {
   text-decoration: none;
   color: hsl(var(--clr-secondary-400));
+}
+
+/* Footer styling */
+footer {
+  background-color: hsl(var(--clr-secondary-100));
+  text-align: center;
+  padding: 20px 0;
+  margin-top: auto;
+}
+
+footer h4 {
+  font-size: 15px;
+  font-weight: 400;
 }
 
 /* Responsive layout */
@@ -245,3 +295,72 @@ nav a:hover::before {
     width: 70%;
   }
 }
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+  }
+
+
+  .nav-menu {
+    position: absolute;
+    left: -100%;
+    top: 80px;
+    flex-direction: column;
+    background-color: white;
+    width: 100%;
+    text-align: center;
+    transition: 0.3s;
+    box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+    z-index: 99;
+    padding: 20px 0;
+    max-height: calc(100vh - 80px);
+    overflow-y: auto;
+  }
+
+  .nav-menu.active {
+    left: 0;
+  }
+
+  .nav-item {
+    margin: 1rem 0;
+    padding: 0 20px;
+  }
+
+  nav li {
+    margin-left: 0;
+    padding-top: 0;
+  }
+
+  .navbar {
+    margin-top: 20px;
+    margin-bottom: 22px;
+    width: 95%;
+  }
+
+  #logo {
+    margin: 0;
+  }
+
+  .container {
+    padding: 15px; /* Reduced from 15px */
+    min-height: calc(100vh - 80px); /* Match actual header height */
+    box-sizing: border-box; /* Include padding in height calculation */
+  }
+
+  .form-box {
+    margin: 0; /* Removed 10px margin */
+    padding: 20px; /* Increased internal padding for better content spacing */
+    width: 100%; /* Full width within container padding */
+    max-width: 380px; /* Maintain maximum width */
+    height: auto; /* Allow height to adjust to content */
+    min-height: 400px; /* Maintain minimum height */
+    box-sizing: border-box; /* Include padding in width calculation */
+  }
+
+
+}
+
+
+
